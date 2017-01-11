@@ -3,9 +3,6 @@
 #include "hsa_error.h"
 
 #include <stdio.h>
-#include <stdint.h>
-#include <stdlib.h>
-#include <string.h>
 #include <assert.h>
 
 // Docs:
@@ -272,5 +269,5 @@ void print_system_info()
       break;
   }
 
-  printf("\n"); 
+  printf("\n");
 }
