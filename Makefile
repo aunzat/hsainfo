@@ -1,10 +1,13 @@
 all: hsainfo
 
-hsainfo: hsainfo.o print_hsa.o hsa_error.o
-	$(CC) -std=c99 -o $@ -L/opt/rocm/lib -lhsa-runtime64  $^
+CFLAGS := -std=c99 -I/opt/rocm/include
+LDFLAGS := -L/opt/rocm/lib -lhsa-runtime64
 
-%.o: %.c
-	$(CC) -c -I/opt/rocm/include -o $@ $< -std=c99
+hsainfo: hsainfo.o print_hsa.o hsa_error.o
+	$(CC) $(LDFLAGS) -o $@ $^
+
+%.o: %.c %.h
+	$(CC) -c $(CFLAGS) -o $@ $<
 
 .PHONY: clean
 clean:
